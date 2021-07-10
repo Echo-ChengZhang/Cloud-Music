@@ -1,5 +1,6 @@
 <template>
   <div class="volume-and-list">
+    <slot name=""></slot>
     这里是音量控制按键和歌曲列表
   </div>
 </template>

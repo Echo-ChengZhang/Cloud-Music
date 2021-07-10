@@ -1,11 +1,14 @@
 <template>
   <div class="music-info">
     <div>
-      <slot name="img"></slot>
+      <slot name="img">
+      </slot>
     </div>
     <div>
-      <slot name="song-name"></slot>
-      <slot name="singer"></slot>
+      <slot name="song-name">
+      </slot>
+      <slot name="singer">
+      </slot>
     </div>
   </div>
 </template>

@@ -1,9 +1,15 @@
 <template>
   <div class="tab-bar">
     <music-info>
-      <img slot="img" src="~@/assets/img/秋绪.jpg" alt="">
-      <h2 slot="song-name">秋绪</h2>
-      <p slot="singer">塞壬唱片</p>
+      <template v-slot:img>
+        <img src="~@/assets/img/秋绪.jpg" alt="">
+      </template>
+      <template v-slot:song-name>
+        <h2>秋绪</h2>
+      </template>
+      <template v-slot:singer>
+        <p>塞壬唱片</p>
+      </template>
     </music-info>
     <player>
 
