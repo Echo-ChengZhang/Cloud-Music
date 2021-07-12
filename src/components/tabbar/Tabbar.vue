@@ -35,7 +35,7 @@
 
 <style>
   .tab-bar {
-    height: 10vh;
+    height: 80px;
     position: fixed;
     bottom: 0;
     left: 0;

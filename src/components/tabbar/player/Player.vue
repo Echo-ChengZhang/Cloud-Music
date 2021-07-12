@@ -3,29 +3,51 @@
     <div class="control-button">
       <div class="control-button-item">
         <a href="#">
-          <img src="~@/assets/img/icon/shangyishou.svg" alt="">
+          <img src="~@/assets/img/icon/previous.svg" alt="">
         </a>
       </div>
-      <div class="control-button-item" id="play-and-pause">
-        <a href="#">
-          <img src="~@/assets/img/icon/bofang.svg" alt="">
-        </a>
+      <div class="control-button-item" id="play-and-pause" @click="itemClick">
+        <div v-if="!isPlaying">
+          <a href="#">
+            <img src="~@/assets/img/icon/play.svg" alt="">
+          </a>
+        </div>
+        <div v-else>
+          <a href="#">
+            <img src="~@/assets/img/icon/pause.svg" alt="">
+          </a>
+        </div>
       </div>
       <div class="control-button-item">
         <a href="#">
-          <img src="~@/assets/img/icon/xiayishou.svg" alt="">
+          <img src="~@/assets/img/icon/next.svg" alt="">
         </a>
       </div>
     </div>
     <div class="progress-bar">
-      这里是进度条
+      <div class="current-time">00:00</div>
+      <div class="progress-line">
+        <div class="current-line" :class="{'playing':isPlaying}">
+          <div class="current-point"></div>
+        </div>
+      </div>
+      <div class="total-time">23:33</div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-
+    data() {
+      return {
+        isPlaying: false
+      }
+    },
+    methods: {
+      itemClick() {
+        this.isPlaying = !this.isPlaying
+      }
+    }
   }
 </script>
 
@@ -45,12 +67,18 @@
   }
 
   .control-button-item {
-    height: 40px;
-    line-height: 40px;
+    height: 30px;
+    line-height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px 40px;
+    margin: 5px 30px;
+  }
+
+  .control-button-item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .control-button-item img {
@@ -59,12 +87,62 @@
 
   #play-and-pause {
     background-color: rgba(0, 0, 0, 0.05);
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
   }
 
-  #play-and-pause img {
-    width: 25px;
+  #play-and-pause:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .progress-bar {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+  }
+
+  .progress-line {
+    height: 6px;
+    width: 30vw;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 0 10px;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .current-line {
+    height: 6px;
+    width: 50%;
+    border-radius: 3px;
+    background: repeating-linear-gradient(45deg, #fff 0px, #fff 5px, #55efc4 6px, #55efc4 10px);
+    background-size: 14px 6px;
+    background-position: 0 0;
+  }
+
+  .playing {
+    animation: grow 1s linear infinite;
+  }
+
+  @keyframes grow {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 14px 0;
+    }
+  }
+
+  .current-point {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: -2px;
+    left: 50%;
   }
 </style>

@@ -6,15 +6,16 @@
           <div class="line"></div>
           <div class="line"></div>
         </div>
-        <slot name="img">
-        </slot>
+        <slot name="img"></slot>
       </a>
     </div>
     <div class="message">
-      <slot name="song-name">
-      </slot>
-      <slot name="singer">
-      </slot>
+      <a href="#">
+        <slot name="song-name"></slot>
+      </a>
+      <a href="#">
+        <slot name="singer"></slot>
+      </a>
     </div>
   </div>
 </template>
@@ -32,6 +33,11 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+  }
+
+  .music-info a {
+    text-decoration: none;
+    color: #000;
   }
 
   .cover img {
