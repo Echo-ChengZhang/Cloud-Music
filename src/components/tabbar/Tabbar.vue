@@ -35,7 +35,7 @@
 
 <style>
   .tab-bar {
-    height: 80px;
+    height: 11vh;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -44,6 +44,5 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.3);
   }
 </style>

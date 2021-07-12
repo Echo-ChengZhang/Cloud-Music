@@ -72,7 +72,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px 30px;
+    margin: 0px 30px;
   }
 
   .control-button-item a {
@@ -82,15 +82,15 @@
   }
 
   .control-button-item img {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
   }
 
   #play-and-pause {
     background-color: rgba(0, 0, 0, 0.05);
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
   }
 
   #play-and-pause:hover {
@@ -98,8 +98,8 @@
   }
 
   #play-and-pause img {
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
   }
 
   .progress-bar {

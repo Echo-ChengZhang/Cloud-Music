@@ -1,8 +1,6 @@
 <template>
-  <div id="app">
     <nav-bar></nav-bar>
     <tab-bar></tab-bar>
-  </div>
 </template>
 
 <script>

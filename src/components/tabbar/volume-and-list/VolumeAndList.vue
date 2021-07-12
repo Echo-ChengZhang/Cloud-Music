@@ -88,9 +88,9 @@
 
   .music-list {
     width: 400px;
-    height:80vh;
+    height:79.7vh;
     position: absolute;
-    bottom: 82px;
+    bottom: 81px;
     right: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     display: none;

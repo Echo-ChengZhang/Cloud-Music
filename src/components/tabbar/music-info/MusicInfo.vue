@@ -3,8 +3,7 @@
     <div class="cover">
       <a href="#">
         <div class="container">
-          <div class="line"></div>
-          <div class="line"></div>
+          <img src="~@/assets/img/tabbar-icon/up.svg" alt="">
         </div>
         <slot name="img"></slot>
       </a>
@@ -60,18 +59,9 @@
     opacity: 0;
   }
 
-  .line {
-    width: 20px;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 1);
-  }
-
-  .line:nth-child(1) {
-    transform: translateX(3px) rotate(-45deg);
-  }
-
-  .line:nth-child(2) {
-    transform: translateX(-3px) rotate(45deg);
+  .container img {
+    width: 25px;
+    height: 25px;
   }
 
   .cover div:hover {
