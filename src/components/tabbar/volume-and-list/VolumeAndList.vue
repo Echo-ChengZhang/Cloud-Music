@@ -2,13 +2,13 @@
   <div class="volume-and-list">
     <div class="volume-icon">
       <div v-if="volume < 33">
-        <img src="~@/assets/img/icon/lowVolume.svg" alt="">
+        <img src="~@/assets/img/tabbar-icon/lowVolume.svg" alt="">
       </div>
       <div v-else-if="volume < 67">
-        <img src="~@/assets/img/icon/mediumVolume.svg" alt="">
+        <img src="~@/assets/img/tabbar-icon/mediumVolume.svg" alt="">
       </div>
       <div v-else>
-        <img src="~@/assets/img/icon/highVolume.svg" alt="">
+        <img src="~@/assets/img/tabbar-icon/highVolume.svg" alt="">
       </div>
     </div>
     <div class="volume-line">
@@ -17,7 +17,7 @@
     </div>
     <div class="music-list-button">
       <div @click="musicListDispaly">
-        <img src="~@/assets/img/icon/musicList.svg" alt="">
+        <img src="~@/assets/img/tabbar-icon/musicList.svg" alt="">
       </div>
       <div class="music-list" :style="{'display': isDisplay}">
       </div>

@@ -1,14 +1,17 @@
 <template>
   <div id="app">
+    <nav-bar></nav-bar>
     <tab-bar></tab-bar>
   </div>
 </template>
 
 <script>
-import TabBar from '@/components/tabbar/Tabbar.vue'
+import TabBar from '@/components/tabbar/TabBar.vue'
+import NavBar from './components/navbar/NavBar.vue'
 export default {
   components: {
-    TabBar
+    TabBar,
+    NavBar
   }
 }
 </script>

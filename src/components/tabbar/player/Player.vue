@@ -3,24 +3,24 @@
     <div class="control-button">
       <div class="control-button-item">
         <a href="#">
-          <img src="~@/assets/img/icon/previous.svg" alt="">
+          <img src="~@/assets/img/tabbar-icon/previous.svg" alt="">
         </a>
       </div>
       <div class="control-button-item" id="play-and-pause" @click="itemClick">
         <div v-if="!isPlaying">
           <a href="#">
-            <img src="~@/assets/img/icon/play.svg" alt="">
+            <img src="~@/assets/img/tabbar-icon/play.svg" alt="">
           </a>
         </div>
         <div v-else>
           <a href="#">
-            <img src="~@/assets/img/icon/pause.svg" alt="">
+            <img src="~@/assets/img/tabbar-icon/pause.svg" alt="">
           </a>
         </div>
       </div>
       <div class="control-button-item">
         <a href="#">
-          <img src="~@/assets/img/icon/next.svg" alt="">
+          <img src="~@/assets/img/tabbar-icon/next.svg" alt="">
         </a>
       </div>
     </div>
@@ -82,7 +82,8 @@
   }
 
   .control-button-item img {
-    width: 20px;
+    width: 15px;
+    height: 15px;
   }
 
   #play-and-pause {
@@ -94,6 +95,11 @@
 
   #play-and-pause:hover {
     background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  #play-and-pause img {
+    width: 18px;
+    height: 18px;
   }
 
   .progress-bar {
