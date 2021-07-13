@@ -29,7 +29,7 @@
   export default {
     data() {
       return {
-        volume: 50,
+        volume: 80,
         isDisplay: 'none'
       }
     },

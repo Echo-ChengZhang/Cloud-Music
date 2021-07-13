@@ -5,7 +5,7 @@
     </a>
     <div class="skin-list" :style="{'display': isDisplay}">
       <a href="#" v-for="item in themes" @click="themeClick(item)">
-        <div class="theme-color" :id="item.name"></div>
+        <div class="theme-color" :style="{'background-color': item.baseColor}"></div>
       </a>
     </div>
   </div>
@@ -17,42 +17,34 @@
       return {
         isDisplay: 'none',
         themes: [{
-            name: 'theme1',
             baseColor: '#fd79a8',
             otherColor: '#e84393'
           },
           {
-            name: 'theme2',
             baseColor: '#ff7675',
             otherColor: '#d63031'
           },
           {
-            name: 'theme3',
             baseColor: '#fab1a0',
             otherColor: '#e17055'
           },
           {
-            name: 'theme4',
             baseColor: '#ffeaa7',
             otherColor: '#fdcb6e'
           },
           {
-            name: 'theme5',
             baseColor: '#55efc4',
             otherColor: '#00b894'
           },
           {
-            name: 'theme6',
             baseColor: '#81ecec',
             otherColor: '#00cec9'
           },
           {
-            name: 'theme7',
             baseColor: '#74b9ff',
             otherColor: '#0984e3'
           },
           {
-            name: 'theme8',
             baseColor: '#a29bfe',
             otherColor: '#6c5ce7'
           }
@@ -68,8 +60,9 @@
         }
       },
       themeClick(item) {
-        this.$store.state.theme.baseColor = item.baseColor 
-        this.$store.state.theme.otherColor = item.otherColor 
+        this.$store.commit('changeBaseColor', item.baseColor)
+        this.$store.commit('changeOtherColor', item.otherColor)
+        this.$store.commit('changeColorBox', item.otherColor)
       }
     }
   }
@@ -110,37 +103,5 @@
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  }
-
-  #theme1 {
-    background-color: #fd79a8;
-  }
-
-  #theme2 {
-    background-color: #ff7675;
-  }
-
-  #theme3 {
-    background-color: #fab1a0;
-  }
-
-  #theme4 {
-    background-color: #ffeaa7;
-  }
-
-  #theme5 {
-    background-color: #55efc4;
-  }
-
-  #theme6 {
-    background-color: #81ecec;
-  }
-
-  #theme7 {
-    background-color: #74b9ff;
-  }
-
-  #theme8 {
-    background-color: #a29bfe;
   }
 </style>
