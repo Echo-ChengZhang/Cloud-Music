@@ -11,12 +11,8 @@
         <p>塞壬唱片</p>
       </template>
     </music-info>
-    <player>
-
-    </player>
-    <volume-and-player>
-
-    </volume-and-player>
+    <player/>
+    <volume-and-player/>
   </div>
 </template>
 

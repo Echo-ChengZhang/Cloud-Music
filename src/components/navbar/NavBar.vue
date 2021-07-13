@@ -1,10 +1,10 @@
 <template>
   <div class="nav-bar">
     <div class="features-bar">
-      <div class="">网易云音乐</div>
+      <div class="logo">网易云音乐</div>
       <search></search>
     </div>
-    <skin></skin>
+    <skin>123215</skin>
   </div>
 </template>
 
@@ -12,8 +12,10 @@
 import Search from './search/Search.vue'
 import Skin from './skin/Skin.vue'
   export default {
-    Search,
-    Skin
+    components: {
+      Search,
+      Skin
+    }
   }
 </script>
 
@@ -29,5 +31,19 @@ import Skin from './skin/Skin.vue'
     align-items: center;
     background-color: #55efc4;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .features-bar {
+    width: 35vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #fff;
+    margin: 0 20px;
   }
 </style>
