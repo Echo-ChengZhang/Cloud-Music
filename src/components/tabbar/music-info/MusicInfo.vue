@@ -37,6 +37,8 @@
   .music-info a {
     text-decoration: none;
     color: #000;
+    display: flex;
+    align-items: center;
   }
 
   .cover img {
