@@ -4,8 +4,29 @@
       <img src="~@/assets/img/navbar-icon/skin.svg" alt="">
     </a>
     <div class="skin-list" :style="{'display': isDisplay}">
-      <a href="#" v-for="item in themes" @click="themeClick(item)">
-        <div class="theme-color" :id="item.name"></div>
+      <a href="#" @click="theme1Click(theme1)">
+        <div class="theme-color" id="theme1"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme2"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme3"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme4"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme5"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme6"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme7"></div>
+      </a>
+      <a href="#">
+        <div class="theme-color" id="theme8"></div>
       </a>
     </div>
   </div>
@@ -16,47 +37,38 @@
     data() {
       return {
         isDisplay: 'none',
-        themes: [{
-            name: 'theme1',
-            baseColor: '#fd79a8',
-            otherColor: '#e84393'
-          },
-          {
-            name: 'theme2',
-            baseColor: '#ff7675',
-            otherColor: '#d63031'
-          },
-          {
-            name: 'theme3',
-            baseColor: '#fab1a0',
-            otherColor: '#e17055'
-          },
-          {
-            name: 'theme4',
-            baseColor: '#ffeaa7',
-            otherColor: '#fdcb6e'
-          },
-          {
-            name: 'theme5',
-            baseColor: '#55efc4',
-            otherColor: '#00b894'
-          },
-          {
-            name: 'theme6',
-            baseColor: '#81ecec',
-            otherColor: '#00cec9'
-          },
-          {
-            name: 'theme7',
-            baseColor: '#74b9ff',
-            otherColor: '#0984e3'
-          },
-          {
-            name: 'theme8',
-            baseColor: '#a29bfe',
-            otherColor: '#6c5ce7'
-          }
-        ]
+        theme1: {
+          baseColor: '#fd79a8',
+          others: '#e84393'
+        },
+        theme2: {
+          baseColor: '#ff7675',
+          others: '#d63031'
+        },
+        theme3: {
+          baseColor: '#fab1a0',
+          others: '#e17055'
+        },
+        theme4: {
+          baseColor: '#ffeaa7',
+          others: '#fdcb6e'
+        },
+        theme5: {
+          baseColor: '#55efc4',
+          others: '#00b894'
+        },
+        theme6: {
+          baseColor: '#81ecec',
+          others: '#00cec9'
+        },
+        theme7: {
+          baseColor: '#74b9ff',
+          others: '#0984e3'
+        },
+        theme8: {
+          baseColor: '#a29bfe',
+          others: '#6c5ce7'
+        }
       }
     },
     methods: {
@@ -67,9 +79,8 @@
           this.isDisplay = 'none'
         }
       },
-      themeClick(item) {
-        this.$store.state.theme.baseColor = item.baseColor 
-        this.$store.state.theme.otherColor = item.otherColor 
+      theme1Click() {
+
       }
     }
   }

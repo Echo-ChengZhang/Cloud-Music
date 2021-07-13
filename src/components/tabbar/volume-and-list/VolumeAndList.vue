@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="volume-line">
-      <div class="current-volume" :style="{'width': volume + '%'}">
+      <div class="current-volume" :style="[{'width': volume + '%'},{'background-color': $store.state.theme.baseColor}]">
       </div>
     </div>
     <div class="music-list-button">
@@ -72,7 +72,6 @@
 
   .current-volume {
     height: 4px;
-    background-color: #55efc4;
   }
 
   .music-list-button div {
@@ -90,7 +89,7 @@
     width: 400px;
     height:79.7vh;
     position: absolute;
-    bottom: 81px;
+    bottom: 11.3vh;
     right: 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     display: none;

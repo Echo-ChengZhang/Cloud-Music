@@ -26,9 +26,11 @@
         </div>
       </div>
     </div>
-    <div input-search>
+    <div class="input-search" :style="{'background-color': $store.state.theme.otherColor}">
       <input type="text">
-      <button></button>
+      <a href="#">
+        <img src="~@/assets/img/navbar-icon/search.svg" alt="">
+      </a>
     </div>
   </div>
 </template>
@@ -47,7 +49,7 @@
 <style>
   .search {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
   }
 
@@ -55,24 +57,67 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 20px;
   }
 
   .backward-forward img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .backward div a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .forward div a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .input-search {
+    height: 30px;
+    padding: 5px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 0;
+    width: 0;
+    transition: 1s;
+  }
+
+  .input-search a {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .input-search img {
     width: 25px;
     height: 25px;
   }
 
-    .backward {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .input-search:hover input {
+    width: 10vw;
   }
 
-    .forward {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .input-search:hover a {
+    background-color: #55efc4;
+    border-radius: 15px;
   }
-
-
 </style>
