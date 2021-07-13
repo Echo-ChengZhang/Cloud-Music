@@ -26,9 +26,10 @@
         </div>
       </div>
     </div>
-    <div class="input-search" :style="{'background-color': $store.state.theme.otherColor}">
+    <div class="input-search" :style="{'background-color': $store.state.theme.otherColor}" @mouseover="mouseOver"
+      @mouseleave="mouseLeave">
       <input type="text">
-      <a href="#">
+      <a href="#" :style="{'background-color': $store.state.theme.colorBox}">
         <img src="~@/assets/img/navbar-icon/search.svg" alt="">
       </a>
     </div>
@@ -41,6 +42,14 @@
       return {
         canBackward: false,
         canForward: false
+      }
+    },
+    methods: {
+      mouseOver() {
+        this.$store.commit('changeColorBox', this.$store.state.theme.baseColor)
+      },
+      mouseLeave() {
+        this.$store.commit('changeColorBox', this.$store.state.theme.otherColor)
       }
     }
   }
@@ -102,6 +111,7 @@
   .input-search a {
     width: 30px;
     height: 30px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,10 +124,5 @@
 
   .input-search:hover input {
     width: 10vw;
-  }
-
-  .input-search:hover a {
-    background-color: #55efc4;
-    border-radius: 15px;
   }
 </style>

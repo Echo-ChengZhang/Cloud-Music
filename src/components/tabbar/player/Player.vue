@@ -27,7 +27,7 @@
     <div class="progress-bar">
       <div class="current-time">00:00</div>
       <div class="progress-line">
-        <div class="current-line" :class="{'playing':isPlaying}">
+        <div class="current-line" :class="{'playing':isPlaying}" :style="{'background': 'repeating-linear-gradient(45deg, #fff 0px, #fff 5px, ' + this.$store.state.theme.baseColor + ' 6px, ' + this.$store.state.theme.baseColor + ' 10px)'}">
           <div class="current-point"></div>
         </div>
       </div>
@@ -123,7 +123,6 @@
     height: 6px;
     width: 50%;
     border-radius: 3px;
-    background: repeating-linear-gradient(45deg, #fff 0px, #fff 5px, #55efc4 6px, #55efc4 10px);
     background-size: 14px 6px;
     background-position: 0 0;
   }
