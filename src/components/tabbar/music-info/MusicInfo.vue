@@ -1,12 +1,12 @@
 <template>
   <div class="music-info">
     <div class="cover">
-      <a href="#">
+      <router-link to="/playing">
         <div class="container">
           <img src="~@/assets/img/tabbar-icon/up.svg" alt="">
         </div>
         <slot name="img"></slot>
-      </a>
+      </router-link>
     </div>
     <div class="message">
       <a href="#">

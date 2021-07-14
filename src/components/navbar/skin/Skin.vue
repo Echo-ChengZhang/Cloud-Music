@@ -88,12 +88,14 @@
     position: absolute;
     top: 9vh;
     right: 0;
+    background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     padding: 10px;
+    z-index: 10;
   }
 
   .theme-color {

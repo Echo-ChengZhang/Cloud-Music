@@ -87,10 +87,11 @@
 
   .music-list {
     width: 400px;
-    height:79.7vh;
+    height:80vh;
     position: absolute;
-    bottom: 11.3vh;
+    bottom: 11vh;
     right: 0;
+    background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     display: none;
   }
