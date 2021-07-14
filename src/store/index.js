@@ -6,7 +6,8 @@ export default createStore({
       baseColor: '#636e72',
       otherColor: '#2d3436',
       colorBox: ''
-    }
+    },
+    currentMusic: ''
   },
   mutations: {
     changeBaseColor(state, color) {
@@ -17,6 +18,9 @@ export default createStore({
     },
     changeColorBox(state, color) {
       state.theme.colorBox = color
+    },
+    changeCurrentMusic(state, info) {
+      state.currentMusic = info
     }
   },
   actions: {

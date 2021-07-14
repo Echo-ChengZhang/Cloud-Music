@@ -1,5 +1,7 @@
 <template>
   <div class="player">
+    <audio :src="$store.state.currentMusic.url" id="player" @canplay="handleCanPlay"
+      @timeupdate="handleTimeUpdate"></audio>
     <div class="control-button">
       <div class="control-button-item">
         <a href="#">
@@ -8,12 +10,12 @@
       </div>
       <div class="control-button-item" id="play-and-pause" @click="itemClick">
         <div v-if="!isPlaying">
-          <a href="#">
+          <a href="#" @click="playMusic">
             <img src="~@/assets/img/tabbar-icon/play.svg" alt="">
           </a>
         </div>
         <div v-else>
-          <a href="#">
+          <a href="#" @click="pauseMusic">
             <img src="~@/assets/img/tabbar-icon/pause.svg" alt="">
           </a>
         </div>
@@ -25,13 +27,14 @@
       </div>
     </div>
     <div class="progress-bar">
-      <div class="current-time">00:00</div>
+      <div class="current-time">{{trunsformTime(musicInfo.currentTime)}}</div>
       <div class="progress-line">
-        <div class="current-line" :class="{'playing':isPlaying}" :style="{'background': 'repeating-linear-gradient(45deg, #fff 0px, #fff 5px, ' + this.$store.state.theme.baseColor + ' 6px, ' + this.$store.state.theme.baseColor + ' 10px)'}">
-          <div class="current-point"></div>
+        <div class="current-line" :class="{'playing':isPlaying}"
+          :style="[{'background-color': this.$store.state.theme.baseColor}, {'width': playProgress}]">
+          <div class="current-point" :style="{'left': playProgress}"></div>
         </div>
       </div>
-      <div class="total-time">23:33</div>
+      <div class="total-time">{{trunsformTime(musicInfo.duration)}}</div>
     </div>
   </div>
 </template>
@@ -40,12 +43,55 @@
   export default {
     data() {
       return {
-        isPlaying: false
+        isPlaying: false,
+        musicInfo: {
+          currentTime: 0,
+          duration: 0
+        }
       }
     },
     methods: {
       itemClick() {
         this.isPlaying = !this.isPlaying
+      },
+      playMusic() {
+        const player = document.getElementById('player')
+        player.play();
+      },
+      pauseMusic() {
+        const player = document.getElementById('player')
+        player.pause();
+      },
+      handleCanPlay(event) {
+        this.musicInfo.duration = event.target.duration;
+      },
+      handleTimeUpdate(event) {
+        this.musicInfo.currentTime = event.target.currentTime;
+      },
+      trunsformTime(time) {
+        let tempTime = Math.floor(time)
+        let minute = 0;
+        let second = 0;
+        if (time < 60) {
+          second = tempTime
+        } else {
+          minute = Math.floor(tempTime / 60)
+          second = tempTime % 60
+        }
+        if (minute < 10) {
+          minute = '0' + minute
+        }
+        if (second < 10) {
+          second = '0' + second
+        }
+        return minute + ':' + second
+      }
+    },
+    computed: {
+      playProgress() {
+        let percent = 0
+        percent = this.musicInfo.currentTime / this.musicInfo.duration * 100
+        return percent + '%'
       }
     }
   }
@@ -121,33 +167,21 @@
 
   .current-line {
     height: 6px;
-    width: 50%;
+    width: 0;
     border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     background-size: 14px 6px;
     background-position: 0 0;
-  }
-
-  .playing {
-    animation: grow 1s linear infinite;
-  }
-
-  @keyframes grow {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 14px 0;
-    }
   }
 
   .current-point {
     width: 10px;
     height: 10px;
+    transform: translate(-50%, 0%);
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.6);
     position: absolute;
     top: -2px;
-    left: 50%;
   }
 </style>

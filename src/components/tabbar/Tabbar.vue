@@ -39,6 +39,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fff;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 </style>
