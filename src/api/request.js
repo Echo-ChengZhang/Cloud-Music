@@ -5,5 +5,11 @@ export function request(config) {
     baseURL: 'http://localhost:3000'
   })
 
+  instance.interceptors.response.use(res => {
+    return res.data
+  }, err => {
+    console.log(err);
+  })
+
   return instance(config)
 }

@@ -2,13 +2,13 @@
   <div class="tab-bar">
     <music-info>
       <template v-slot:img>
-        <img src="~@/assets/img/秋绪.jpg" alt="">
+        <img :src="$store.state.currentMusicUrl" alt="">
       </template>
       <template v-slot:song-name>
-        <h2>秋绪</h2>
+        <h2>{{$store.state.currentMusicName}}</h2>
       </template>
       <template v-slot:singer>
-        <p>塞壬唱片</p>
+        <span v-for="item in $store.state.currentMusicSinger">{{item.name}}</span>
       </template>
     </music-info>
     <player/>

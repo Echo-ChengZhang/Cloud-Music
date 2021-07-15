@@ -3,7 +3,7 @@
     <h2>推荐歌单</h2>
     <div class="personalized">
       <div v-for="item in message" class="personalized-item">
-        <router-link to="/playing">
+        <router-link @click="musicListClick(item)" to="/music-list-details">
           <img :src="item.picUrl" alt="">
           <div>{{item.name}}</div>
         </router-link>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import {
     request
   } from '@/api/request';
@@ -24,12 +25,30 @@
       }
     },
     beforeCreate() {
-      request({
-        url: '/personalized'
-      }).then(res => {
-        console.log(res.data.result);
-        this.message = res.data.result
-      })
+      axios.all([
+        request({
+          url: '/personalized'
+        }),
+        request({
+          url: '/song/detail',
+          params: {
+            ids: this.$store.state.currentMusicId
+          }
+        })
+      ]).then(axios.spread((res1, res2) => {
+        this.message = res1.result
+        console.log(res2.songs[0]);
+        this.$store.commit('changeCurrentMusicName', res2.songs[0].name)
+        this.$store.commit('changeCurrentMusicUrl', res2.songs[0].al.picUrl)
+        this.$store.commit('changeCurrentMusicSinger', res2.songs[0].ar)
+        this.$store.commit('changeCurrentAlbumId', res2.songs[0].al.id)
+        this.$store.commit('changeCurrentAlbumName', res2.songs[0].al.name)
+      }))
+    },
+    methods: {
+      musicListClick(item) {
+        this.$store.commit('changeCurrentMusicListId', item.id)
+      }
     }
   }
 </script>

@@ -1,12 +1,11 @@
 <template>
   <div class="skin">
-    <a href="#" @click="skinListDispaly">
+    <div @click="skinListDispaly">
       <img src="~@/assets/img/navbar-icon/skin.svg" alt="">
-    </a>
+    </div>
     <div class="skin-list" :style="{'display': isDisplay}">
-      <a href="#" v-for="item in themes" @click="themeClick(item)">
-        <div class="theme-color" :style="{'background-color': item.baseColor}"></div>
-      </a>
+      <div class="theme-color" v-for="item in themes" @click="themeClick(item)"
+        :style="{'background-color': item.baseColor}"></div>
     </div>
   </div>
 </template>
@@ -69,7 +68,7 @@
 </script>
 
 <style>
-  .skin a {
+  .skin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,6 +78,7 @@
     height: 25px;
     width: 25px;
     margin: 0 20px;
+    cursor: pointer;
   }
 
   .skin-list {
@@ -105,5 +105,6 @@
     margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
 </style>

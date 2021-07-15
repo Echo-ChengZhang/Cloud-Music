@@ -9,12 +9,10 @@
       </router-link>
     </div>
     <div class="message">
-      <a href="#">
-        <slot name="song-name"></slot>
-      </a>
-      <a href="#">
+      <slot name="song-name"></slot>
+      <div>
         <slot name="singer"></slot>
-      </a>
+      </div>
     </div>
   </div>
 </template>
@@ -41,14 +39,14 @@
     align-items: center;
   }
 
-  .cover img {
+  .music-info .cover img {
     width: 60px;
     height: 60px;
     border-radius: 10px;
     margin: 10px 20px;
   }
 
-  .container {
+  .music-info .cover .container {
     position: absolute;
     width: 60px;
     height: 60px;
@@ -61,31 +59,38 @@
     opacity: 0;
   }
 
-  .container img {
+  .music-info .cover .container img {
     width: 25px;
     height: 25px;
   }
 
-  .cover div:hover {
+  .music-info .cover div:hover {
     opacity: 1;
     backdrop-filter: blur(2px);
   }
 
-  .message {
+  .music-info .message {
     display: flex;
     flex-direction: column;
   }
 
-  .message h2 {
-    font-size: 20px;
-    line-height: 20px;
-    height: 20px;
+  .music-info .message h2 {
+    font-size: 15px;
+    line-height: 15px;
+    height: 15px;
     margin: 5px 0;
   }
 
-  .message p {
-    line-height: 20px;
-    height: 20px;
-    margin: 5px 0;
+  .music-info .message div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .music-info .message span {
+    font-size: 10px;
+    line-height: 10px;
+    height: 10px;
+    margin: 5px 5px 5px 0;
   }
 </style>

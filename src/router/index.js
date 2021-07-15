@@ -3,9 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 const Recommendation = () => import ('@/views/recommendation/Recommendation.vue')
 const MusicList = () => import ('../views/musiclist/MusicList.vue')
 const LeaderBoard = () => import ('../views/leaderboard/LeaderBoard.vue')
-const Singer = () => import ('../views/singer/Singer.vue')
+const Singers = () => import ('../views/singers/Singers.vue')
 const NewSongs = () => import ('../views/newsongs/NewSongs.vue')
 const Playing = () => import ('../views/playing/Playing.vue')
+const MusicListDetails = () => import ('../views/musiclistDetails/MusicListDetails.vue')
+const Artist = () => import ('../views/artist/Artist.vue')
 
 const routes = [
   {
@@ -25,8 +27,8 @@ const routes = [
     component: LeaderBoard
   },
   {
-    path: '/singer',
-    component: Singer
+    path: '/singers',
+    component: Singers
   },
   {
     path: '/new-songs',
@@ -35,6 +37,14 @@ const routes = [
   {
     path: '/playing',
     component: Playing
+  },
+  {
+    path: '/music-list-details',
+    component: MusicListDetails
+  },
+  {
+    path: '/artist',
+    component: Artist
   }
 ]
 

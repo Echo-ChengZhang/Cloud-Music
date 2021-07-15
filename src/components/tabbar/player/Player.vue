@@ -1,35 +1,27 @@
 <template>
   <div class="player">
-    <audio :src="$store.state.currentMusic.url" id="player" @canplay="handleCanPlay"
-      @timeupdate="handleTimeUpdate"></audio>
+    <audio :src="'https://music.163.com/song/media/outer/url?id=' + $store.state.currentMusicId + '.mp3'" id="audio"
+      @canplay="handleCanPlay" @timeupdate="handleTimeUpdate" autoplay loop></audio>
     <div class="control-button">
       <div class="control-button-item">
-        <a href="#">
           <img src="~@/assets/img/tabbar-icon/previous.svg" alt="">
-        </a>
       </div>
-      <div class="control-button-item" id="play-and-pause" @click="itemClick">
-        <div v-if="!isPlaying">
-          <a href="#" @click="playMusic">
+      <div class="control-button-item" id="play-and-pause">
+        <div v-if="!isPlaying" @click="playMusic">
             <img src="~@/assets/img/tabbar-icon/play.svg" alt="">
-          </a>
         </div>
-        <div v-else>
-          <a href="#" @click="pauseMusic">
+        <div v-else @click="pauseMusic">
             <img src="~@/assets/img/tabbar-icon/pause.svg" alt="">
-          </a>
         </div>
       </div>
       <div class="control-button-item">
-        <a href="#">
           <img src="~@/assets/img/tabbar-icon/next.svg" alt="">
-        </a>
       </div>
     </div>
     <div class="progress-bar">
       <div class="current-time">{{trunsformTime(musicInfo.currentTime)}}</div>
       <div class="progress-line">
-        <div class="current-line" :class="{'playing':isPlaying}"
+        <div class="current-line"
           :style="[{'background-color': this.$store.state.theme.baseColor}, {'width': playProgress}]">
           <div class="current-point" :style="{'left': playProgress}"></div>
         </div>
@@ -51,22 +43,36 @@
       }
     },
     methods: {
-      itemClick() {
-        this.isPlaying = !this.isPlaying
-      },
       playMusic() {
-        const player = document.getElementById('player')
+        const player = document.getElementById('audio')
+        this.startRotate()
         player.play();
+        this.isPlaying = true
       },
       pauseMusic() {
-        const player = document.getElementById('player')
+        const player = document.getElementById('audio')
+        this.pauseRotate()
         player.pause();
+        this.isPlaying = false
       },
       handleCanPlay(event) {
         this.musicInfo.duration = event.target.duration;
+        this.isPlaying = true
       },
       handleTimeUpdate(event) {
         this.musicInfo.currentTime = event.target.currentTime;
+      },
+      startRotate() {
+        let rotateDuration = 10;
+        let rotateStep = 0.04
+        let that = this;
+        let clockNum = setInterval(function () {
+          that.$store.commit('changeRotateDeg', rotateStep);
+        }, rotateDuration);
+        this.$store.commit('changeClockNum', clockNum);
+      },
+      pauseRotate() {
+        this.$store.commit('changeClockNum', clearInterval(this.$store.state.clockNum))
       },
       trunsformTime(time) {
         let tempTime = Math.floor(time)
@@ -119,12 +125,7 @@
     justify-content: center;
     align-items: center;
     margin: 0px 30px;
-  }
-
-  .control-button-item a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    cursor: pointer;
   }
 
   .control-button-item img {
@@ -137,6 +138,13 @@
     width: 40px;
     height: 40px;
     border-radius: 20px;
+    cursor: pointer;
+  }
+
+  #play-and-pause div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #play-and-pause:hover {

@@ -1,7 +1,7 @@
 <template>
   <div class="menu-list">
     <router-link v-for="(item, index) in menu" @click="menuClick(item, index)" :to="item.link">
-      <div class="menu-item" :class="{active: currentIndex===index}">{{item.name}}</div>
+      <div class="menu-item">{{item.name}}</div>
     </router-link>
   </div>
 </template>
@@ -23,21 +23,19 @@
             name: '排行榜'
           },
           {
-            link: '/singer',
+            link: '/singers',
             name: '歌手'
           },
           {
             link: '/new-songs',
             name: '最新音乐'
           }
-        ],
-        currentIndex: ''
+        ]
       }
     },
     methods: {
-      menuClick(item, index) {
+      menuClick(item) {
         this.$router.push(item.link)
-        this.currentIndex = index
       }
     }
   }
@@ -64,7 +62,7 @@
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  .active {
+  .router-link-active div {
     background-color: rgba(0, 0, 0, 0.1);
     font-weight: bolder;
   }
