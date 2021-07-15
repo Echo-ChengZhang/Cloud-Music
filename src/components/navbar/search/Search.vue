@@ -1,29 +1,11 @@
 <template>
   <div class="search">
     <div class="backward-forward">
-      <div class="backward">
-        <div v-if="!canBackward">
-          <a href="#">
-            <img src="~@/assets/img/navbar-icon/last.svg" alt="">
-          </a>
-        </div>
-        <div v-else>
-          <a href="#">
-            <img src="~@/assets/img/navbar-icon/last-active.svg" alt="">
-          </a>
-        </div>
+      <div class="backward" @click="$router.go(-1)">
+        <img src="~@/assets/img/navbar-icon/last-active.svg" alt="">
       </div>
-      <div class="forward">
-        <div v-if="!canForward">
-          <a href="#">
-            <img src="~@/assets/img/navbar-icon/next.svg" alt="">
-          </a>
-        </div>
-        <div v-else>
-          <a href="#">
-            <img src="~@/assets/img/navbar-icon/next-active.svg" alt="">
-          </a>
-        </div>
+      <div class="forward" @click="$router.go(1)">
+        <img src="~@/assets/img/navbar-icon/next-active.svg" alt="">
       </div>
     </div>
     <div class="input-search" :style="{'background-color': $store.state.theme.otherColor}" @mouseover="mouseOver"
@@ -38,12 +20,6 @@
 
 <script>
   export default {
-    data() {
-      return {
-        canBackward: false,
-        canForward: false
-      }
-    },
     methods: {
       mouseOver() {
         this.$store.commit('changeColorBox', this.$store.state.theme.baseColor)
@@ -64,7 +40,7 @@
 
   .backward-forward {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-right: 20px;
   }
@@ -74,18 +50,20 @@
     height: 20px;
   }
 
-  .backward div a {
+  .backward {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px;
+    cursor: pointer;
   }
 
-  .forward div a {
+  .forward {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px;
+    cursor: pointer;
   }
 
   .input-search {
