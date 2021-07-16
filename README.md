@@ -1,5 +1,10 @@
 # cloud-music
 
+## 用到了下面的接口
+```
+https://github.com/Binaryify/NeteaseCloudMusicApi.git
+```
+
 ## Project setup
 ```
 npm install
