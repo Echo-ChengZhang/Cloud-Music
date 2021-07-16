@@ -44,35 +44,19 @@
     methods: {
       playMusic() {
         const player = document.getElementById('audio')
-        this.startRotate()
         player.play();
+        this.$store.commit('startRotate')
       },
       pauseMusic() {
         const player = document.getElementById('audio')
-        this.pauseRotate()
         player.pause();
+        this.$store.commit('pauseRotate')
       },
       handleCanPlay(event) {
         this.musicInfo.duration = event.target.duration;
-        this.startRotate();
-        this.$store.commit('exchangePlayStatus', true)
       },
       handleTimeUpdate(event) {
         this.musicInfo.currentTime = event.target.currentTime;
-      },
-      startRotate() {
-        let rotateDuration = 10;
-        let rotateStep = 0.04;
-        this.$store.commit('exchangePlayStatus', true)
-        let that = this;
-        let clockNum = setInterval(function () {
-          that.$store.commit('changeRotateDeg', rotateStep);
-        }, rotateDuration);
-        this.$store.commit('changeClockNum', clockNum);
-      },
-      pauseRotate() {
-        this.$store.commit('changeClockNum', clearInterval(this.$store.state.clockNum))
-        this.$store.commit('exchangePlayStatus', false)
       },
       trunsformTime(time) {
         let tempTime = Math.floor(time)

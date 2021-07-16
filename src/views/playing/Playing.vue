@@ -63,6 +63,7 @@ import {
     },
     deactivated() {
       this.$store.commit('changeSideBarStyle')
+      this.$store.commit('pauseRotate')
     },
     methods: {
       transDate(time) {

@@ -38,14 +38,18 @@ export default createStore({
     changeSideBarStyle(state) {
       state.sideBarIsShow = !state.sideBarIsShow
     },
-    changeRotateDeg(state, num) {
-      state.rotateDeg += num
+    startRotate(state) {
+      let rotateDuration = 10;
+      let rotateStep = 0.04;
+      let clockNum = setInterval(function () {
+        state.rotateDeg += rotateStep;
+      }, rotateDuration);
+      state.clockNum = clockNum;
+      state.isPlaying = true;
     },
-    changeClockNum(state, num) {
-      state.clockNum = num
-    },
-    exchangePlayStatus(state, boolean) {
-      state.isPlaying = boolean
+    pauseRotate(state) {
+      clearInterval(state.clockNum)
+      state.isPlaying = false;
     },
 
     changeCurrentMusicId(state, info) {
