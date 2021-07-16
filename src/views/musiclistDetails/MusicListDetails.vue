@@ -18,7 +18,7 @@
         <li v-for="(item, index) in musicListInfo.playlist?.tracks">
           <div class="music-info"  :class="{'singleLine': index % 2 == 0}">
             <div>
-              <router-link to="/playing" @click="toMusic(item, index)">{{item.name}}</router-link>
+              <router-link to="/playing" @click="toMusic(item)">{{item.name}}</router-link>
             </div>
             <div class="music-info-singer">
               <router-link to="/artist" v-for="singer in item.ar" @click="toSinger(singer)">
@@ -44,15 +44,13 @@
       }
     },
     activated() {
-      let musicListId = this.$store.state.currentMusicListId
       request({
         url: '/playlist/detail',
         params: {
-          id: musicListId
+          id: this.$store.state.currentMusicListId
         }
       }).then(res => {
         this.musicListInfo = res
-        console.log(res);
       }).catch(err => {
         console.log(err);
       })
@@ -60,20 +58,18 @@
     methods: {
       transDate(time) {
         let day = new Date(time)
-        var year = day.getFullYear();
-        var month = day.getMonth() + 1;
-        var date = day.getDate();
+        let year = day.getFullYear();
+        let month = day.getMonth() + 1;
+        let date = day.getDate();
         return ([year, month, date].join('-'));
       },
-      toMusic(item, index) {
+      toMusic(item) {
         this.$store.commit('changeCurrentMusicId', item.id)
         this.$store.commit('changeCurrentMusicName', item.name)
         this.$store.commit('changeCurrentMusicSinger', item.ar)
-        this.$store.commit('changeCurrentMusicUrl', item.al.picUrl)
+        this.$store.commit('changeCurrentAlbumPicUrl', item.al.picUrl)
         this.$store.commit('changeCurrentAlbumName', item.al.name)
-        this.$store.commit('changeAlbumId', item.al.id)
-        this.$store.commit('changeLastMusicId', item.id)
-        this.$store.commit('changeNextMusicId', item.id)
+        this.$store.commit('changeCurrentAlbumId', item.al.id)
       },
       toSinger(singer) {
         this.$store.commit('changeSingerId', singer.id)

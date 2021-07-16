@@ -2,7 +2,7 @@
   <div class="tab-bar">
     <music-info>
       <template v-slot:img>
-        <img :src="$store.state.currentMusicUrl" alt="">
+        <img :src="$store.state.currentAlbumPicUrl" alt="">
       </template>
       <template v-slot:song-name>
         <h2>{{$store.state.currentMusicName}}</h2>

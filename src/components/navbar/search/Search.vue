@@ -10,22 +10,30 @@
     </div>
     <div class="input-search" :style="{'background-color': $store.state.theme.otherColor}" @mouseover="mouseOver"
       @mouseleave="mouseLeave">
-      <input type="text">
-      <a href="#" :style="{'background-color': $store.state.theme.colorBox}">
+      <input type="text" v-model="searchKeywords">
+      <router-link :style="{'background-color': $store.state.theme.colorBox}" to="/search" @click="searchClick">
         <img src="~@/assets/img/navbar-icon/search.svg" alt="">
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
   export default {
+    data() {
+      return {
+        searchKeywords: ''
+      }
+    },
     methods: {
       mouseOver() {
         this.$store.commit('changeColorBox', this.$store.state.theme.baseColor)
       },
       mouseLeave() {
         this.$store.commit('changeColorBox', this.$store.state.theme.otherColor)
+      },
+      searchClick() {
+        this.$store.commit('changeSearchKeywords', this.searchKeywords);
       }
     }
   }

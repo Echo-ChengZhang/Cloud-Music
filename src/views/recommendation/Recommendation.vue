@@ -37,9 +37,8 @@
         })
       ]).then(axios.spread((res1, res2) => {
         this.message = res1.result
-        console.log(res2.songs[0]);
         this.$store.commit('changeCurrentMusicName', res2.songs[0].name)
-        this.$store.commit('changeCurrentMusicUrl', res2.songs[0].al.picUrl)
+        this.$store.commit('changeCurrentAlbumPicUrl', res2.songs[0].al.picUrl)
         this.$store.commit('changeCurrentMusicSinger', res2.songs[0].ar)
         this.$store.commit('changeCurrentAlbumId', res2.songs[0].al.id)
         this.$store.commit('changeCurrentAlbumName', res2.songs[0].al.name)

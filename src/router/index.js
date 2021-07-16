@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const Recommendation = () => import ('@/views/recommendation/Recommendation.vue')
-const MusicList = () => import ('../views/musiclist/MusicList.vue')
-const LeaderBoard = () => import ('../views/leaderboard/LeaderBoard.vue')
-const Singers = () => import ('../views/singers/Singers.vue')
-const NewSongs = () => import ('../views/newsongs/NewSongs.vue')
-const Playing = () => import ('../views/playing/Playing.vue')
-const MusicListDetails = () => import ('../views/musiclistDetails/MusicListDetails.vue')
-const Artist = () => import ('../views/artist/Artist.vue')
+const MusicList = () => import ('@/views/musiclist/MusicList.vue')
+const LeaderBoard = () => import ('@/views/leaderboard/LeaderBoard.vue')
+const Singers = () => import ('@/views/singers/Singers.vue')
+const NewSongs = () => import ('@/views/newsongs/NewSongs.vue')
+const Playing = () => import ('@/views/playing/Playing.vue')
+const MusicListDetails = () => import ('@/views/musiclistDetails/MusicListDetails.vue')
+const Artist = () => import ('@/views/artist/Artist.vue')
+const Search = () => import ('@/views/searchpage/SearchPage.vue');
 
 const routes = [
   {
@@ -45,6 +46,10 @@ const routes = [
   {
     path: '/artist',
     component: Artist
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]
 

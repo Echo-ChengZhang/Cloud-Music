@@ -2,8 +2,10 @@
   <div class="nav-bar" :style="{'background-color':$store.state.theme.baseColor}">
     <div class="features-bar">
       <div class="logo">
-        <h2>网易云音乐</h2>
-        <h2>网易云音乐</h2>
+        <router-link to="/recommendation">
+          <h2>网易云音乐</h2>
+          <h2>网易云音乐</h2>
+        </router-link>
       </div>
       <search></search>
     </div>
@@ -42,7 +44,7 @@
     align-items: center;
   }
 
-  .logo {
+  .logo a {
     margin: 0 20px;
     display: flex;
     align-items: center;

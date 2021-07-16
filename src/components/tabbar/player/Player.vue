@@ -47,17 +47,14 @@
         const player = document.getElementById('audio')
         this.startRotate()
         player.play();
-        this.isPlaying = true
       },
       pauseMusic() {
         const player = document.getElementById('audio')
         this.pauseRotate()
         player.pause();
-        this.isPlaying = false
       },
       handleCanPlay(event) {
         this.musicInfo.duration = event.target.duration;
-        this.isPlaying = true
       },
       handleTimeUpdate(event) {
         this.musicInfo.currentTime = event.target.currentTime;
@@ -70,9 +67,11 @@
           that.$store.commit('changeRotateDeg', rotateStep);
         }, rotateDuration);
         this.$store.commit('changeClockNum', clockNum);
+        this.isPlaying = true
       },
       pauseRotate() {
         this.$store.commit('changeClockNum', clearInterval(this.$store.state.clockNum))
+        this.isPlaying = false
       },
       trunsformTime(time) {
         let tempTime = Math.floor(time)

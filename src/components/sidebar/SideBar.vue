@@ -1,17 +1,14 @@
 <template>
   <div class="side-bar" :class="{'side-bar-actived': !$store.state.sideBarIsShow}">
     <menu-list></menu-list>
-    <music-list></music-list>
   </div>
 </template>
 
 <script>
   import MenuList from './menulist/MenuList.vue'
-  import MusicList from './musiclist/MusicList.vue'
   export default {
     components: {
-      MenuList,
-      MusicList
+      MenuList
     }
   }
 </script>
