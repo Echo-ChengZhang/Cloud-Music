@@ -7,7 +7,7 @@
           <img src="~@/assets/img/tabbar-icon/previous.svg" alt="">
       </div>
       <div class="control-button-item" id="play-and-pause">
-        <div v-if="!isPlaying" @click="playMusic">
+        <div v-if="!$store.state.isPlaying" @click="playMusic">
             <img src="~@/assets/img/tabbar-icon/play.svg" alt="">
         </div>
         <div v-else @click="pauseMusic">
@@ -35,7 +35,6 @@
   export default {
     data() {
       return {
-        isPlaying: false,
         musicInfo: {
           currentTime: 0,
           duration: 0
@@ -55,23 +54,25 @@
       },
       handleCanPlay(event) {
         this.musicInfo.duration = event.target.duration;
+        this.startRotate();
+        this.$store.commit('exchangePlayStatus', true)
       },
       handleTimeUpdate(event) {
         this.musicInfo.currentTime = event.target.currentTime;
       },
       startRotate() {
         let rotateDuration = 10;
-        let rotateStep = 0.04
+        let rotateStep = 0.04;
+        this.$store.commit('exchangePlayStatus', true)
         let that = this;
         let clockNum = setInterval(function () {
           that.$store.commit('changeRotateDeg', rotateStep);
         }, rotateDuration);
         this.$store.commit('changeClockNum', clockNum);
-        this.isPlaying = true
       },
       pauseRotate() {
         this.$store.commit('changeClockNum', clearInterval(this.$store.state.clockNum))
-        this.isPlaying = false
+        this.$store.commit('exchangePlayStatus', false)
       },
       trunsformTime(time) {
         let tempTime = Math.floor(time)

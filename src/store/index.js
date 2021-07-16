@@ -21,6 +21,7 @@ export default createStore({
     sideBarIsShow: true,
     rotateDeg: 0,
     clockNum: 0,
+    isPlaying: false,
 
     searchKeywords: ''
   },
@@ -42,6 +43,9 @@ export default createStore({
     },
     changeClockNum(state, num) {
       state.clockNum = num
+    },
+    exchangePlayStatus(state, boolean) {
+      state.isPlaying = boolean
     },
 
     changeCurrentMusicId(state, info) {

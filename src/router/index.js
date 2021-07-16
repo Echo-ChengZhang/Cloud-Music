@@ -9,6 +9,7 @@ const Playing = () => import ('@/views/playing/Playing.vue')
 const MusicListDetails = () => import ('@/views/musiclistDetails/MusicListDetails.vue')
 const Artist = () => import ('@/views/artist/Artist.vue')
 const Search = () => import ('@/views/searchpage/SearchPage.vue');
+const Album = () => import ('@/views/album/Album.vue')
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/album',
+    component: Album
   }
 ]
 

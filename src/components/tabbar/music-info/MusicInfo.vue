@@ -72,6 +72,8 @@
   .music-info .message {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
   }
 
   .music-info .message h2 {
