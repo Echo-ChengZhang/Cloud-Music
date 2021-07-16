@@ -70,7 +70,7 @@
         this.$store.commit('changeCurrentAlbumPicUrl', item.al.picUrl)
         this.$store.commit('changeCurrentAlbumName', item.al.name)
         this.$store.commit('changeCurrentAlbumId', item.al.id)
-        this.$store.commit('startRotate')
+        this.$store.commit('exchangePlayStatus',true)
       },
       toSinger(singer) {
         this.$store.commit('changeSingerId', singer.id)

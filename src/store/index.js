@@ -38,6 +38,9 @@ export default createStore({
     changeSideBarStyle(state) {
       state.sideBarIsShow = !state.sideBarIsShow
     },
+    exchangePlayStatus(state, boolean) {
+      state.isPlaying = boolean
+    },
     startRotate(state) {
       let rotateDuration = 10;
       let rotateStep = 0.04;
@@ -45,11 +48,9 @@ export default createStore({
         state.rotateDeg += rotateStep;
       }, rotateDuration);
       state.clockNum = clockNum;
-      state.isPlaying = true;
     },
     pauseRotate(state) {
       clearInterval(state.clockNum)
-      state.isPlaying = false;
     },
 
     changeCurrentMusicId(state, info) {

@@ -46,11 +46,13 @@
         const player = document.getElementById('audio')
         player.play();
         this.$store.commit('startRotate')
+        this.$store.commit('exchangePlayStatus',true)
       },
       pauseMusic() {
         const player = document.getElementById('audio')
         player.pause();
         this.$store.commit('pauseRotate')
+        this.$store.commit('exchangePlayStatus',false)
       },
       handleCanPlay(event) {
         this.musicInfo.duration = event.target.duration;

@@ -48,6 +48,9 @@ import {
       }
     },
     activated() {
+      if (this.$store.state.isPlaying) {
+        this.$store.commit('startRotate')
+      }
       this.$store.commit('changeSideBarStyle')
       request({
           url: '/comment/hot',

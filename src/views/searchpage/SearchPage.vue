@@ -51,7 +51,7 @@
         this.$store.commit('changeCurrentMusicSinger', item.artists)
         this.$store.commit('changeCurrentAlbumName', item.album.name)
         this.$store.commit('changeCurrentAlbumId', item.album.id)
-        this.$store.commit('startRotate')
+        this.$store.commit('exchangePlayStatus',true)
         request({
           url: '/album',
           params: {
