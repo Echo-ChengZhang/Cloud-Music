@@ -1,21 +1,31 @@
 <template>
   <div class="main-music-list">
     <div>
-      <div class="catlist-button">全部歌单</div>
-      <div class="catlist">
+      <div class="catlist-button" @click="catlistClick">{{currentCat}}</div>
+      <div class="catlist" :style="{'display': isDisplay}">
         <div class="all-music-list">
-          <a href="#">全部歌单</a>
+          <div>
+            <span @click="allClick">全部歌单</span>
+          </div>
         </div>
         <div class="categories" v-for="(items, index) in categories.categories">
           <div class="category-name">{{items}}</div>
           <div class="category-details">
             <div v-for="item in correctCategory(index)">
-              <a href="#">
+              <span @click="itemClick(item)">
                 {{item.name}}
-              </a>
+              </span>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="play-list">
+      <div v-for="item in playlistsInfo" class="play-list-item">
+        <router-link @click="musicListClick(item)" to="/music-list-details">
+          <img :src="item.coverImgUrl" alt="">
+          <div>{{item.name}}</div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -30,10 +40,13 @@
   export default {
     data() {
       return {
-        categories: ''
+        categories: '',
+        isDisplay: 'none',
+        currentCat: '全部歌单',
+        playlistsInfo: ''
       }
     },
-    activated() {
+    created() {
       axios.all([
         request({
           url: '/playlist/catlist'
@@ -43,7 +56,7 @@
         })
       ]).then(axios.spread((res1, res2) => {
         this.categories = res1
-        console.log(res2);
+        this.playlistsInfo = res2.playlists
       })).catch(err => {
         console.log(err);
       })
@@ -58,6 +71,44 @@
           }
         }
         return newArrey
+      },
+      catlistClick() {
+        if (this.isDisplay == 'none') {
+          this.isDisplay = 'block'
+        } else {
+          this.isDisplay = 'none'
+        }
+      },
+      allClick() {
+        this.isDisplay = 'none'
+        this.currentCat = '全部歌单'
+        request({
+          url: '/top/playlist',
+          params: {
+            cat: '全部'
+          }
+        }).then(res => {
+          this.playlistsInfo = res.playlists
+        }).catch(err => {
+          console.log(err);
+        })
+      },
+      itemClick(item) {
+        this.isDisplay = 'none'
+        this.currentCat = item.name
+        request({
+          url: '/top/playlist',
+          params: {
+            cat: item.name
+          }
+        }).then(res => {
+          this.playlistsInfo = res.playlists
+        }).catch(err => {
+          console.log(err);
+        })
+      },
+      musicListClick(item) {
+        this.$store.commit('changeCurrentMusicListId', item.id)
       }
     }
   }
@@ -66,7 +117,7 @@
 <style>
   .main-music-list {
     padding: 20px;
-    overflow: auto;
+    position: relative;
   }
 
   .main-music-list .catlist-button {
@@ -92,15 +143,17 @@
     box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     position: absolute;
-    top: 112px;
-    overflow: auto;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
   }
 
   .main-music-list .catlist .all-music-list {
     padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  .main-music-list .catlist .all-music-list a {
+  .main-music-list .catlist .all-music-list div {
     padding: 5px 10px;
     border-radius: 50px;
   }
@@ -112,7 +165,6 @@
 
   .main-music-list .catlist .categories .category-name {
     width: 15%;
-    font-size: 15px;
     color: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
   }
@@ -125,22 +177,58 @@
   }
 
   .main-music-list .catlist .categories .category-details div {
-    width: 20%;
+    width: 17%;
     height: 50px;
-  }
-
-  .main-music-list .catlist .categories .category-details a {
-    font-size: 15px;
     padding: 5px 10px;
     border-radius: 50px;
   }
 
-  .main-music-list .catlist a {
+  .main-music-list .catlist span {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50px;
+  }
+
+  .main-music-list .catlist span:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .main-music-list .play-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .main-music-list .play-list .play-list-item {
+    margin: 10px;
+  }
+
+  .main-music-list .play-list .play-list-item a {
     text-decoration: none;
     color: #000;
   }
 
-  .main-music-list .catlist a:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  .main-music-list .play-list .play-list-item img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+  }
+
+  .main-music-list .play-list .play-list-item img:hover {
+    opacity: 0.8;
+  }
+
+  .main-music-list .play-list .play-list-item div {
+    font-size: 15px;
+    width: 200px;
+    height: 30px;
+    margin: 0 10px;
+  }
+
+  .main-music-list .play-list .play-list-item div:hover {
+    font-weight: bold;
   }
 </style>

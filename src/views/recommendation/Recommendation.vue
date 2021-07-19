@@ -53,6 +53,10 @@
 </script>
 
 <style>
+  .recommendation {
+    padding: 20px;
+  }
+
   .recommendation h2 {
     margin: 20px;
   }

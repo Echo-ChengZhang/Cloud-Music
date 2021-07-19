@@ -16,7 +16,7 @@
     <div class="music-list-details-list">
       <ul>
         <li v-for="(item, index) in musicListInfo.playlist?.tracks">
-          <div class="music-info"  :class="{'singleLine': index % 2 == 0}">
+          <div class="music-info" :class="{'singleLine': index % 2 == 0}">
             <div>
               <router-link to="/playing" @click="toMusic(item)">{{item.name}}</router-link>
             </div>
