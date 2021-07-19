@@ -10,6 +10,7 @@ const MusicListDetails = () => import ('@/views/musiclistDetails/MusicListDetail
 const Artist = () => import ('@/views/artist/Artist.vue')
 const Search = () => import ('@/views/searchpage/SearchPage.vue');
 const Album = () => import ('@/views/album/Album.vue')
+const SingerInfo = () => import ('@/views/singerinfo/SingerInfo.vue')
 
 const routes = [
   {
@@ -55,6 +56,10 @@ const routes = [
   {
     path: '/album',
     component: Album
+  },
+  {
+    path: '/singer-info',
+    component: SingerInfo
   }
 ]
 

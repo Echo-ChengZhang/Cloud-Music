@@ -1,4 +1,6 @@
-import { createStore } from 'vuex'
+import {
+  createStore
+} from 'vuex'
 
 export default createStore({
   state: {
@@ -14,6 +16,7 @@ export default createStore({
     currentAlbumId: 0,
     currentAlbumName: '',
     currentAlbumPicUrl: '',
+    singerId: 0,
 
     lastMusicId: 0,
     nextMusicId: 0,
@@ -77,6 +80,10 @@ export default createStore({
       state.currentMusicListId = info
     },
 
+    changeSingerId(state, info) {
+      state.singerId = info
+    },
+
     changeLastMusicId(state, info) {
       state.lastMusicId = info
     },
@@ -88,8 +95,6 @@ export default createStore({
       state.searchKeywords = info
     }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })

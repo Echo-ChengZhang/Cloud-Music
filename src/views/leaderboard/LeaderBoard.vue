@@ -36,7 +36,7 @@
         <div class="global-list-item" v-for="globalListItem in globalList()">
           <router-link to="/music-list-details" @click="$store.commit('changeCurrentMusicListId', globalListItem.id)">
             <img :src="globalListItem.coverImgUrl" alt="">
-            <div>{{globalListItem.name}}</div>
+            <div class="global-list-item-name">{{globalListItem.name}}</div>
           </router-link>
         </div>
       </div>
@@ -162,7 +162,7 @@
   .leader-board .global-list div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 20px;
   }
@@ -189,5 +189,10 @@
 
   .leader-board .global-list .global-list-item div:hover {
     font-weight: bold;
+  }
+
+  .leader-board .global-list .global-list-item .global-list-item-name {
+    display: flex;
+    justify-content: flex-start;
   }
 </style>
