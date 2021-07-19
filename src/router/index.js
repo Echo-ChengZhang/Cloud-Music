@@ -9,8 +9,10 @@ const Playing = () => import ('@/views/playing/Playing.vue')
 const MusicListDetails = () => import ('@/views/musiclistDetails/MusicListDetails.vue')
 const Artist = () => import ('@/views/artist/Artist.vue')
 const Search = () => import ('@/views/searchpage/SearchPage.vue');
-const Album = () => import ('@/views/album/Album.vue')
 const SingerInfo = () => import ('@/views/singerinfo/SingerInfo.vue')
+const Album = () => import ('@/views/singerinfo/album/Album.vue')
+const Desc = () => import ('@/views/singerinfo/desc/Desc.vue')
+const SimiArtist = () => import ('@/views/singerinfo/simiartist/SimiArtist.vue')
 
 const routes = [
   {
@@ -54,12 +56,26 @@ const routes = [
     component: Search
   },
   {
-    path: '/album',
-    component: Album
-  },
-  {
     path: '/singer-info',
-    component: SingerInfo
+    component: SingerInfo,
+    children: [
+      {
+        path: '',
+        redirect: '/singer-info/album'
+      },
+      {
+        path: 'album',
+        component: Album
+      },
+      {
+        path: 'desc',
+        component: Desc
+      },
+      {
+        path: 'simi-artist',
+        component: SimiArtist
+      }
+    ]
   }
 ]
 
