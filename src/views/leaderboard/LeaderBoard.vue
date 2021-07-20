@@ -17,10 +17,10 @@
         </div>
       </div>
       <div class="offical-list-item">
-        <div class="offical-list-item-img">
+        <div class="offical-list-item-img" @click="toArtistBoard">
           <img :src="artistToplist.coverUrl" alt="">
         </div>
-        <div>
+        <div @click="toArtistBoard">
           <div v-for="(item, index) in artistToplist.artists" class="offical-list-item-songs" :class="{'singleLine': index % 2 == 0}">
             <span>{{index + 1}}&nbsp&nbsp&nbsp{{item.first}}</span>
           </div>
@@ -91,6 +91,9 @@
       toLeaderBoardDetails(item) {
         this.$store.commit('changeCurrentMusicListId', item.id)
         this.$router.push('/music-list-details')
+      },
+      toArtistBoard() {
+        this.$router.push('/top-artists')
       }
     }
   }

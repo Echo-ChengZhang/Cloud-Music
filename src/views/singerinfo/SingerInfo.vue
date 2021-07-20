@@ -2,11 +2,11 @@
   <div class="singer-info">
     <div class="singer-info-title">
       <div class="singer-img">
-        <img :src="detail.cover" alt="">
+        <img :src="$store.state.singerInfo.cover" alt="">
       </div>
       <div class="singer-main-info">
-        <h2>{{detail.name}}</h2>
-        <p>单曲数：{{detail.musicSize}}&nbsp&nbsp&nbsp&nbsp专辑数：{{detail.albumSize}}</p>
+        <h2>{{$store.state.singerInfo.name}}</h2>
+        <p>单曲数：{{$store.state.singerInfo.musicSize}}&nbsp&nbsp&nbsp&nbsp专辑数：{{$store.state.singerInfo.albumSize}}</p>
       </div>
     </div>
     <div class="singer-info-content">
@@ -31,29 +31,8 @@
 </template>
 
 <script>
-  import {
-    request
-  } from '@/api/request'
-
   export default {
-    data() {
-      return {
-        detail: ''
-      }
-    },
-    activated() {
-      request({
-        url: '/artist/detail',
-        params: {
-          id: this.$store.state.singerId
-        }
-      }).then((res) => {
-        console.log(res.data.artist);
-        this.detail = res.data.artist
-      }).catch(err => {
-        console.log(err);
-      })
-    }
+
   }
 </script>
 

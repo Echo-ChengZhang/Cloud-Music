@@ -25,10 +25,6 @@
           {
             link: '/singers',
             name: '歌手'
-          },
-          {
-            link: '/new-songs',
-            name: '最新音乐'
           }
         ]
       }

@@ -1,21 +1,24 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory
+} from 'vue-router'
 
-const Recommendation = () => import ('@/views/recommendation/Recommendation.vue')
-const MusicList = () => import ('@/views/musiclist/MusicList.vue')
-const LeaderBoard = () => import ('@/views/leaderboard/LeaderBoard.vue')
-const Singers = () => import ('@/views/singers/Singers.vue')
-const NewSongs = () => import ('@/views/newsongs/NewSongs.vue')
-const Playing = () => import ('@/views/playing/Playing.vue')
-const MusicListDetails = () => import ('@/views/musiclistDetails/MusicListDetails.vue')
-const Artist = () => import ('@/views/artist/Artist.vue')
-const Search = () => import ('@/views/searchpage/SearchPage.vue');
-const SingerInfo = () => import ('@/views/singerinfo/SingerInfo.vue')
-const Album = () => import ('@/views/singerinfo/album/Album.vue')
-const Desc = () => import ('@/views/singerinfo/desc/Desc.vue')
-const SimiArtist = () => import ('@/views/singerinfo/simiartist/SimiArtist.vue')
+const Recommendation = () => import('@/views/recommendation/Recommendation.vue')
+const MusicList = () => import('@/views/musiclist/MusicList.vue')
+const LeaderBoard = () => import('@/views/leaderboard/LeaderBoard.vue')
+const Singers = () => import('@/views/singers/Singers.vue')
+const Playing = () => import('@/views/playing/Playing.vue')
+const MusicListDetails = () => import('@/views/musiclistDetails/MusicListDetails.vue')
+const Artist = () => import('@/views/artist/Artist.vue')
+const Search = () => import('@/views/searchpage/SearchPage.vue');
+const SingerInfo = () => import('@/views/singerinfo/SingerInfo.vue')
+const Album = () => import('@/views/singerinfo/album/Album.vue')
+const Desc = () => import('@/views/singerinfo/desc/Desc.vue')
+const SimiArtist = () => import('@/views/singerinfo/simiartist/SimiArtist.vue')
+const TopArtists = () => import('@/views/leaderboard/topartists/TopArtists.vue')
+const AlbumDetails = () => import('@/views/albumdetails/AlbumDetails.vue')
 
-const routes = [
-  {
+const routes = [{
     path: '',
     redirect: '/recommendation'
   },
@@ -36,10 +39,6 @@ const routes = [
     component: Singers
   },
   {
-    path: '/new-songs',
-    component: NewSongs
-  },
-  {
     path: '/playing',
     component: Playing
   },
@@ -58,8 +57,7 @@ const routes = [
   {
     path: '/singer-info',
     component: SingerInfo,
-    children: [
-      {
+    children: [{
         path: '',
         redirect: '/singer-info/album'
       },
@@ -76,6 +74,14 @@ const routes = [
         component: SimiArtist
       }
     ]
+  },
+  {
+    path: '/top-artists',
+    component: TopArtists
+  },
+  {
+    path: '/album-details',
+    component: AlbumDetails
   }
 ]
 

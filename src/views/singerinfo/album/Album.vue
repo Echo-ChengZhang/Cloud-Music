@@ -1,16 +1,9 @@
 <template>
   <div class="album">
-    <div class="album-item" v-for="item in albums">
-      <div class="album-cover">
-        <img :src="item.picUrl" alt="">
-        <p>{{item.publishTime}}</p>
-      </div>
-      <div class="album-songs">
-        <h2 class="album-name">{{item.name}}</h2>
-        <div class="album-songs-item">
-          <div v-for="albumSong in albumSongs(item)">{{albumSong.name}}</div>
-        </div>
-      </div>
+    <div class="album-cover" v-for="item in albums">
+      <img :src="item.picUrl" alt="">
+      <p class="album-name">{{item.name}}</p>
+      <p class="album-publish-time">{{transDate(item.publishTime)}}</p>
     </div>
   </div>
 </template>
@@ -33,40 +26,52 @@
           id: this.$store.state.singerId
         }
       }).then((res) => {
-        console.log(res.hotAlbums);
+        console.log(res);
         this.albums = res.hotAlbums
       }).catch(err => {
         console.log(err);
       })
     },
     methods: {
-      albumSongs(item) {
-        request({
-        url: '/album',
-        params: {
-          id: item.id
-        }
-      }).then((res) => {
-        console.log(res.songs);
-        return res.songs
-      }).catch(err => {
-        console.log(err);
-      })
+      transDate(time) {
+        let day = new Date(time)
+        let year = day.getFullYear();
+        let month = day.getMonth() + 1;
+        let date = day.getDate();
+        return ([year, month, date].join('-'));
       }
     }
   }
 </script>
 
 <style>
-  .album .album-item {
+  .album {
     margin-top: 20px;
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
-  .album .album-item .album-cover img {
+  .album .album-cover {
+    margin: 20px;
+  }
+
+  .album .album-cover img {
     width: 200px;
     height: 200px;
     border-radius: 10px;
-    margin-right: 20px;
+  }
+
+  .album .album-cover .album-name {
+    width: 200px;
+    font-size: 15px;
+    margin: 5px 0;
+  }
+
+  .album .album-cover .album-publish-time {
+    font-size: 13px;
+    margin: 5px 0;
+    color: rgba(0, 0, 0, 0.5)
   }
 </style>

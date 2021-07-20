@@ -1,6 +1,9 @@
 import {
   createStore
 } from 'vuex'
+import {
+  request
+} from '@/api/request'
 
 export default createStore({
   state: {
@@ -16,7 +19,9 @@ export default createStore({
     currentAlbumId: 0,
     currentAlbumName: '',
     currentAlbumPicUrl: '',
-    singerId: 0,
+    singerId: 6452,
+    singerInfo: '',
+    albumId: 98517711,
 
     lastMusicId: 0,
     nextMusicId: 0,
@@ -82,6 +87,21 @@ export default createStore({
 
     changeSingerId(state, info) {
       state.singerId = info
+    },
+    changeSingerInfo(state) {
+      request({
+        url: '/artist/detail',
+        params: {
+          id: state.singerId
+        }
+      }).then((res) => {
+        state.singerInfo = res.data.artist
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    changeAlbumId(state, info) {
+      state.albumId = info
     },
 
     changeLastMusicId(state, info) {

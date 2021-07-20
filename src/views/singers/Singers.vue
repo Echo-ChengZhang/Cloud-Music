@@ -31,7 +31,7 @@
     </div>
     <div class="singers-list">
       <div class="singers-list-item" v-for="singer in artists">
-        <router-link to="/singer-info" @click="$store.commit('changeSingerId', singer.id)">
+        <router-link to="/singer-info" @click="toSingerInfo(singer)">
           <img :src="singer.picUrl" alt="">
           <div>{{singer.name}}</div>
         </router-link>
@@ -125,6 +125,10 @@
         }).catch(err => {
           console.log(err);
         })
+      },
+      toSingerInfo(singer) {
+        this.$store.commit('changeSingerId', singer.id)
+        this.$store.commit('changeSingerInfo')
       }
     }
   }

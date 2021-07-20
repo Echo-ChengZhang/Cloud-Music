@@ -3,13 +3,13 @@
     <h2>{{$store.state.currentMusicName}}</h2>
     <div class="artist">
       <span>歌手：</span>
-      <router-link v-for="item in $store.state.currentMusicSinger" to="/artist">
+      <router-link v-for="item in $store.state.currentMusicSinger" to="/singer-info" @click="toSinger(item)">
         {{item.name}}
       </router-link>
     </div>
     <div class="album">
       <span>专辑：</span>
-      <router-link to="/album">{{$store.state.currentAlbumName}}</router-link>
+      <router-link to="/album-details" @click="toAlbum($store.state.currentAlbumId)">{{$store.state.currentAlbumName}}</router-link>
     </div>
     <div class="album-pic">
       <img :src="$store.state.currentAlbumPicUrl" alt="" :style="{'transform': 'rotate(' + $store.state.rotateDeg + 'deg)'}">
@@ -77,6 +77,14 @@ import {
         let hour = day.getHours();
         let minute = day.getMinutes();
         return ([year, month, date].join('-') + ' ' + ([hour, minute].join(':')));
+      },
+      toSinger(item) {
+        this.$store.commit('changeSingerId', item.id)
+        this.$store.commit('changeSingerInfo')
+        this.$router.push('/singer-info')
+      },
+      toAlbum(item) {
+        this.$store.commit('changeAlbumId', item)
       }
     }
   }
@@ -93,14 +101,16 @@ import {
   .playing h2 {
     font-size: 40px;
     font-weight: normal;
-    margin: 20px 0 10px;
+    margin: 20px 0 30px;
   }
 
-  .artist {
-    margin-bottom: 10px;
+  .playing .artist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .artist a {
+  .playing .artist a {
     text-decoration: none;
     color: #000;
     height: 30px;
@@ -108,15 +118,17 @@ import {
     margin-right: 10px;
   }
 
-  .artist a:hover {
+  .playing .artist a:hover {
     font-weight: bold;
   }
 
-  .album {
-    margin-bottom: 10px;
+  .playing .album {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .album a {
+  .playing .album a {
     text-decoration: none;
     color: #000;
     height: 30px;
@@ -124,7 +136,7 @@ import {
     margin-right: 10px;
   }
 
-  .album a:hover {
+  .playing .album a:hover {
     font-weight: bold;
   }
 
