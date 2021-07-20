@@ -15,7 +15,8 @@ export default createStore({
     currentMusicId: 1828858733,
     currentMusicName: '',
     currentMusicSinger: [],
-    currentMusicListId: 0,
+    currentMusicListId: 3778678,
+    currentMusicList: '',
     currentAlbumId: 0,
     currentAlbumName: '',
     currentAlbumPicUrl: '',
@@ -83,6 +84,19 @@ export default createStore({
 
     changeCurrentMusicListId(state, info) {
       state.currentMusicListId = info
+    },
+    changeCurrentMusicList(state) {
+      request({
+        url: '/playlist/detail',
+        params: {
+          id: state.currentMusicListId
+        }
+      }).then(res => {
+        console.log(res);
+        state.currentMusicList = res.playlist.tracks
+      }).catch(err => {
+        console.log(err);
+      })
     },
 
     changeSingerId(state, info) {

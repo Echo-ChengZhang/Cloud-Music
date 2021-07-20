@@ -90,6 +90,7 @@
       },
       toLeaderBoardDetails(item) {
         this.$store.commit('changeCurrentMusicListId', item.id)
+        this.$store.commit('changeCurrentMusicList')
         this.$router.push('/music-list-details')
       },
       toArtistBoard() {

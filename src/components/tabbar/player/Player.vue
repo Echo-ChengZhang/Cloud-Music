@@ -3,7 +3,7 @@
     <audio :src="'https://music.163.com/song/media/outer/url?id=' + $store.state.currentMusicId + '.mp3'" id="audio"
       @canplay="handleCanPlay" @timeupdate="handleTimeUpdate" autoplay loop></audio>
     <div class="control-button">
-      <div class="control-button-item">
+      <div class="control-button-item" @click="toLast">
           <img src="~@/assets/img/tabbar-icon/previous.svg" alt="">
       </div>
       <div class="control-button-item" id="play-and-pause">
@@ -14,7 +14,7 @@
             <img src="~@/assets/img/tabbar-icon/pause.svg" alt="">
         </div>
       </div>
-      <div class="control-button-item">
+      <div class="control-button-item" @click="toNext">
           <img src="~@/assets/img/tabbar-icon/next.svg" alt="">
       </div>
     </div>
@@ -77,6 +77,12 @@
           second = '0' + second
         }
         return minute + ':' + second
+      },
+      toLast() {
+        
+      },
+      toNext() {
+
       }
     },
     computed: {

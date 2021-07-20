@@ -42,11 +42,13 @@
         this.$store.commit('changeCurrentMusicSinger', res2.songs[0].ar)
         this.$store.commit('changeCurrentAlbumId', res2.songs[0].al.id)
         this.$store.commit('changeCurrentAlbumName', res2.songs[0].al.name)
+        this.$store.commit('changeCurrentMusicList')
       }))
     },
     methods: {
       musicListClick(item) {
         this.$store.commit('changeCurrentMusicListId', item.id)
+        this.$store.commit('changeCurrentMusicList')
       }
     }
   }

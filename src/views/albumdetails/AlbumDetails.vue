@@ -12,10 +12,10 @@
     </div>
     <div class="album-songs">
       <h2>歌曲列表</h2>
-      <div class="album-song" v-for="song in albumSongs">
-        <div>{{song.name}}</div>
+      <div class="album-song" v-for="(song, index) in albumSongs" :class="{'single': index % 2 == 0}">
+        <div @click="toMusic(song)">{{song.name}}</div>
         <div>
-          <span v-for="singer in song.ar">{{singer.name}}</span>
+          <span v-for="singer in song.ar" @click="toSinger(singer)">{{singer.name}}</span>
         </div>
       </div>
     </div>
@@ -55,6 +55,21 @@
         let month = day.getMonth() + 1;
         let date = day.getDate();
         return ([year, month, date].join('-'));
+      },
+      toMusic(item) {
+        this.$store.commit('changeCurrentMusicId', item.id)
+        this.$store.commit('changeCurrentMusicName', item.name)
+        this.$store.commit('changeCurrentMusicSinger', item.ar)
+        this.$store.commit('changeCurrentAlbumPicUrl', item.al.picUrl)
+        this.$store.commit('changeCurrentAlbumName', item.al.name)
+        this.$store.commit('changeCurrentAlbumId', item.al.id)
+        this.$store.commit('exchangePlayStatus',true)
+        this.$router.push('/playing')
+      },
+      toSinger(singer) {
+        this.$store.commit('changeSingerId', singer.id)
+        this.$store.commit('changeSingerInfo')
+        this.$router.push('/singer-info')
       }
     }
   }
@@ -84,5 +99,36 @@
     border-radius: 5px;
     padding: 3px 6px;
     margin-right: 10px;
+  }
+  
+  .album-details .album-songs {
+    margin-top: 20px;
+  }
+
+  .album-details .album-songs h2 {
+    margin: 20px 0 10px;
+  }
+
+  .album-details .album-songs .album-song {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    cursor: pointer;
+  }
+
+  .album-details .album-songs .album-song:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .album-details .album-songs .album-song div {
+    flex: 1;
+  }
+
+  .album-details .album-songs .album-song span {
+    margin-right: 20px;
+  }
+
+  .album-details .album-songs .single {
+    background-color: rgba(0, 0, 0, 0.1);
   }
 </style>

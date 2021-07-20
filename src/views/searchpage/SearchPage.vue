@@ -9,7 +9,7 @@
               <router-link to="/playing" @click="songClick(item)">{{item.name}}</router-link>
             </div>
             <div class="music-info-singer">
-              <router-link to="/artist" v-for="singer in item.artists" @click="singerClick(singer)">
+              <router-link to="/singer-info" v-for="singer in item.artists" @click="singerClick(singer)">
                 <div>{{singer.name}}</div>
               </router-link>
             </div>
@@ -63,6 +63,7 @@
       },
       singerClick(singer) {
         this.$store.commit('changeSingerId', singer.id)
+        this.$store.commit('changeSingerInfo')
       }
     }
   }

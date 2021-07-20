@@ -1,6 +1,6 @@
 <template>
   <div class="album">
-    <div class="album-cover" v-for="item in albums">
+    <div class="album-cover" v-for="item in albums" @click="toAlbum(item.id)">
       <img :src="item.picUrl" alt="">
       <p class="album-name">{{item.name}}</p>
       <p class="album-publish-time">{{transDate(item.publishTime)}}</p>
@@ -39,6 +39,10 @@
         let month = day.getMonth() + 1;
         let date = day.getDate();
         return ([year, month, date].join('-'));
+      },
+      toAlbum(item) {
+        this.$store.commit('changeAlbumId', item)
+        this.$router.push('/album-details')
       }
     }
   }
@@ -55,6 +59,7 @@
 
   .album .album-cover {
     margin: 20px;
+    cursor: pointer;
   }
 
   .album .album-cover img {

@@ -109,6 +109,7 @@
       },
       musicListClick(item) {
         this.$store.commit('changeCurrentMusicListId', item.id)
+        this.$store.commit('changeCurrentMusicList')
       }
     }
   }

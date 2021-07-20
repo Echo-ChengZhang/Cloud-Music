@@ -21,7 +21,7 @@
               <router-link to="/playing" @click="toMusic(item)">{{item.name}}</router-link>
             </div>
             <div class="music-info-singer">
-              <router-link to="/artist" v-for="singer in item.ar" @click="toSinger(singer)">
+              <router-link to="/singer-info" v-for="singer in item.ar" @click="toSinger(singer)">
                 <div>{{singer.name}}</div>
               </router-link>
             </div>
@@ -50,6 +50,7 @@
           id: this.$store.state.currentMusicListId
         }
       }).then(res => {
+        console.log(res.playlist.tracks);
         this.musicListInfo = res
       }).catch(err => {
         console.log(err);
@@ -74,7 +75,8 @@
       },
       toSinger(singer) {
         this.$store.commit('changeSingerId', singer.id)
-      },
+        this.$store.commit('changeSingerInfo')
+      }
     }
   }
 </script>
