@@ -9,6 +9,9 @@ Vue、VueX、Vue Router、axios等
 ### 实现的功能
 音乐播放、暂停、更换主题色、推荐页、歌单页、歌单详情页、排行榜页、歌手页、歌手详情页、专辑详情页、播放页等
 
+### 项目截图
+
+
 ### 用到了下面的接口
 ```
 https://github.com/Binaryify/NeteaseCloudMusicApi.git
